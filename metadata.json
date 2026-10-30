@@ -1,0 +1,6 @@
+{
+  "name": "Macro Deck 7 Inch - Touch Console & PyInstaller Builder",
+  "description": "Portable 1024x600 touch-friendly macro deck console with real-time prayer schedule, CPU stats, app shortcuts, YouTube Live, and production PyQt6 main.py with PyInstaller .exe build kit.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

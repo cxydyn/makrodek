@@ -1,0 +1,45 @@
+name: Build Windows Portable EXE
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pyinstaller pycaw comtypes
+
+    - name: Build Standalone Windows EXE with PyInstaller
+      run: |
+        pyinstaller --noconfirm --onefile --windowed `
+          --name "MacroDeck7Inch_Portable" `
+          --add-data "config.ini;." `
+          --hidden-import "PyQt6.QtWebEngineWidgets" `
+          --hidden-import "PyQt6.QtWebEngineCore" `
+          --hidden-import "psutil" `
+          --hidden-import "requests" `
+          main.py
+
+    - name: Upload Artifact Portable EXE
+      uses: actions/upload-artifact@v4
+      with:
+        name: MacroDeck7Inch-Windows-EXE
+        path: |
+          dist/MacroDeck7Inch_Portable.exe
+          config.ini
