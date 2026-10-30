@@ -23,17 +23,19 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip install pyinstaller pycaw comtypes
+        pip install pyinstaller pycaw comtypes keyboard
 
     - name: Build Standalone Windows EXE with PyInstaller
       run: |
         pyinstaller --noconfirm --onefile --windowed `
           --name "MacroDeck7Inch_Portable" `
+          --add-data "deck_config.json;." `
           --add-data "config.ini;." `
           --hidden-import "PyQt6.QtWebEngineWidgets" `
           --hidden-import "PyQt6.QtWebEngineCore" `
           --hidden-import "psutil" `
           --hidden-import "requests" `
+          --hidden-import "keyboard" `
           main.py
 
     - name: Upload Artifact Portable EXE
@@ -42,4 +44,5 @@ jobs:
         name: MacroDeck7Inch-Windows-EXE
         path: |
           dist/MacroDeck7Inch_Portable.exe
+          deck_config.json
           config.ini

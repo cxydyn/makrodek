@@ -8,30 +8,21 @@ python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
 echo.
-echo 2. Memulai proses bundling PyInstaller...
-pyinstaller --noconfirm --onedir --windowed ^
-    --name "MacroDeck7Inch" ^
-    --add-data "config.ini;." ^
-    --hidden-import "PyQt6.QtWebEngineWidgets" ^
-    --hidden-import "PyQt6.QtWebEngineCore" ^
-    --hidden-import "psutil" ^
-    --hidden-import "requests" ^
-    main.py
-
-echo.
-echo Catatan: Untuk single executable (.exe tunggal):
+echo 2. Memulai proses bundling PyInstaller Standalone EXE...
 pyinstaller --noconfirm --onefile --windowed ^
     --name "MacroDeck7Inch_Portable" ^
+    --add-data "deck_config.json;." ^
     --add-data "config.ini;." ^
     --hidden-import "PyQt6.QtWebEngineWidgets" ^
     --hidden-import "PyQt6.QtWebEngineCore" ^
     --hidden-import "psutil" ^
     --hidden-import "requests" ^
+    --hidden-import "keyboard" ^
     main.py
 
 echo.
 echo ========================================================
 echo   SELESAI! File .exe tersimpan di folder dist/
-echo   Pastikan file config.ini diletakkan bersama file .exe
+echo   Pastikan file deck_config.json diletakkan bersama .exe
 echo ========================================================
 pause

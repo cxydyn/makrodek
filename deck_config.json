@@ -1,0 +1,353 @@
+{
+  "settings": {
+    "title": "Macro Deck 7 Inch",
+    "city": "Jakarta",
+    "country": "Indonesia",
+    "frameless": true,
+    "always_on_top": false,
+    "fullscreen": false,
+    "cpu_interval_ms": 2000,
+    "stream_url": "https://www.youtube.com/embed/5qap5aO4i9A?autoplay=1",
+    "chat_url": "https://www.youtube.com/live_chat?is_popout=1"
+  },
+  "sidebar": [
+    { "id": "default", "label": "Default", "icon": "🏠" },
+    { "id": "streaming", "label": "Stream", "icon": "📡" },
+    { "id": "editing", "label": "Editing", "icon": "✂️" },
+    { "id": "gaming", "label": "Gaming", "icon": "🎮" }
+  ],
+  "pages": {
+    "default": [
+      {
+        "id": "btn_1",
+        "label": "Mute Mic",
+        "sublabel": "Status: OFF",
+        "icon": "🎙️",
+        "type": "internal",
+        "action": "mute_mic",
+        "color": "red"
+      },
+      {
+        "id": "btn_2",
+        "label": "Camera Toggle",
+        "sublabel": "Active Feed",
+        "icon": "📹",
+        "type": "internal",
+        "action": "camera_toggle",
+        "color": "green"
+      },
+      {
+        "id": "btn_3",
+        "label": "CPU Temp",
+        "sublabel": "Usage: --%",
+        "icon": "⚡",
+        "type": "internal",
+        "action": "cpu_stat",
+        "color": "orange"
+      },
+      {
+        "id": "btn_4",
+        "label": "OBS Studio",
+        "sublabel": "obs64.exe",
+        "icon": "🎦",
+        "type": "shortcut",
+        "action": "obs64.exe",
+        "color": "default"
+      },
+      {
+        "id": "btn_5",
+        "label": "Spotify",
+        "sublabel": "Music Player",
+        "icon": "🎵",
+        "type": "shortcut",
+        "action": "spotify.exe",
+        "color": "green"
+      },
+      {
+        "id": "btn_6",
+        "label": "Discord",
+        "sublabel": "Voice Chat",
+        "icon": "💬",
+        "type": "shortcut",
+        "action": "discord.exe",
+        "color": "default"
+      },
+      {
+        "id": "btn_7",
+        "label": "Go Live",
+        "sublabel": "Start Stream",
+        "icon": "🔴",
+        "type": "internal",
+        "action": "golive_toggle",
+        "color": "red"
+      },
+      {
+        "id": "btn_8",
+        "label": "Start Recording",
+        "sublabel": "Capture Display",
+        "icon": "⏺️",
+        "type": "internal",
+        "action": "record_toggle",
+        "color": "default"
+      },
+      {
+        "id": "btn_9",
+        "label": "Volume Controls",
+        "sublabel": "+ / -",
+        "icon": "🔊",
+        "type": "internal",
+        "action": "volume_split",
+        "color": "default"
+      }
+    ],
+    "streaming": [
+      {
+        "id": "st_1",
+        "label": "Scene Cam",
+        "sublabel": "Webcam Full",
+        "icon": "📹",
+        "type": "hotkey",
+        "action": "ctrl+f1",
+        "color": "default"
+      },
+      {
+        "id": "st_2",
+        "label": "Scene Display",
+        "sublabel": "Capture Screen",
+        "icon": "🖥️",
+        "type": "hotkey",
+        "action": "ctrl+f2",
+        "color": "default"
+      },
+      {
+        "id": "st_3",
+        "label": "Scene BRB",
+        "sublabel": "Be Right Back",
+        "icon": "☕",
+        "type": "hotkey",
+        "action": "ctrl+f3",
+        "color": "default"
+      },
+      {
+        "id": "st_4",
+        "label": "Mute Stream",
+        "sublabel": "Audio Mixer",
+        "icon": "🔇",
+        "type": "hotkey",
+        "action": "ctrl+shift+m",
+        "color": "red"
+      },
+      {
+        "id": "st_5",
+        "label": "Chat Overlay",
+        "sublabel": "Toggle Chat",
+        "icon": "💬",
+        "type": "hotkey",
+        "action": "ctrl+f5",
+        "color": "default"
+      },
+      {
+        "id": "st_6",
+        "label": "Cheering SFX",
+        "sublabel": "Soundboard",
+        "icon": "🎉",
+        "type": "hotkey",
+        "action": "ctrl+num1",
+        "color": "purple"
+      },
+      {
+        "id": "st_7",
+        "label": "Airhorn SFX",
+        "sublabel": "Soundboard",
+        "icon": "💥",
+        "type": "hotkey",
+        "action": "ctrl+num2",
+        "color": "orange"
+      },
+      {
+        "id": "st_8",
+        "label": "Save Replay",
+        "sublabel": "Buffer 30s",
+        "icon": "⚡",
+        "type": "hotkey",
+        "action": "f12",
+        "color": "blue"
+      },
+      {
+        "id": "st_9",
+        "label": "Twitch Studio",
+        "sublabel": "Creator Dashboard",
+        "icon": "🌐",
+        "type": "hyperlink",
+        "action": "https://dashboard.twitch.tv",
+        "color": "purple"
+      }
+    ],
+    "editing": [
+      {
+        "id": "ed_1",
+        "label": "Razor Tool",
+        "sublabel": "Split Track (C)",
+        "icon": "✂️",
+        "type": "hotkey",
+        "action": "c",
+        "color": "default"
+      },
+      {
+        "id": "ed_2",
+        "label": "Ripple Delete",
+        "sublabel": "Shift + Del",
+        "icon": "⏪",
+        "type": "hotkey",
+        "action": "shift+delete",
+        "color": "red"
+      },
+      {
+        "id": "ed_3",
+        "label": "Add Marker",
+        "sublabel": "Marker (M)",
+        "icon": "📌",
+        "type": "hotkey",
+        "action": "m",
+        "color": "default"
+      },
+      {
+        "id": "ed_4",
+        "label": "Render In/Out",
+        "sublabel": "Enter Key",
+        "icon": "⚡",
+        "type": "hotkey",
+        "action": "enter",
+        "color": "orange"
+      },
+      {
+        "id": "ed_5",
+        "label": "Color Grade",
+        "sublabel": "Lumetri Panel",
+        "icon": "🎨",
+        "type": "hotkey",
+        "action": "shift+7",
+        "color": "blue"
+      },
+      {
+        "id": "ed_6",
+        "label": "Quick Save",
+        "sublabel": "Ctrl + S",
+        "icon": "💾",
+        "type": "hotkey",
+        "action": "ctrl+s",
+        "color": "green"
+      },
+      {
+        "id": "ed_7",
+        "label": "Export Video",
+        "sublabel": "Ctrl + M",
+        "icon": "📤",
+        "type": "hotkey",
+        "action": "ctrl+m",
+        "color": "purple"
+      },
+      {
+        "id": "ed_8",
+        "label": "Undo Action",
+        "sublabel": "Ctrl + Z",
+        "icon": "↩️",
+        "type": "hotkey",
+        "action": "ctrl+z",
+        "color": "default"
+      },
+      {
+        "id": "ed_9",
+        "label": "Sound Library",
+        "sublabel": "Buka Epidemic Sound",
+        "icon": "🌐",
+        "type": "hyperlink",
+        "action": "https://www.epidemicsound.com",
+        "color": "blue"
+      }
+    ],
+    "gaming": [
+      {
+        "id": "gm_1",
+        "label": "Game Bar",
+        "sublabel": "Win + G",
+        "icon": "🎮",
+        "type": "hotkey",
+        "action": "win+g",
+        "color": "green"
+      },
+      {
+        "id": "gm_2",
+        "label": "Screenshot",
+        "sublabel": "Win + PrtScn",
+        "icon": "📸",
+        "type": "hotkey",
+        "action": "win+printscreen",
+        "color": "default"
+      },
+      {
+        "id": "gm_3",
+        "label": "Discord Deafen",
+        "sublabel": "Mute Voice",
+        "icon": "🔇",
+        "type": "hotkey",
+        "action": "ctrl+shift+d",
+        "color": "red"
+      },
+      {
+        "id": "gm_4",
+        "label": "Steam Client",
+        "sublabel": "Game Launcher",
+        "icon": "🚀",
+        "type": "shortcut",
+        "action": "steam.exe",
+        "color": "blue"
+      },
+      {
+        "id": "gm_5",
+        "label": "Google Chrome",
+        "sublabel": "Game Wiki / Guide",
+        "icon": "🌐",
+        "type": "hyperlink",
+        "action": "https://www.google.com",
+        "color": "default"
+      },
+      {
+        "id": "gm_6",
+        "label": "FPS Monitor",
+        "sublabel": "RTSS Overlay",
+        "icon": "📊",
+        "type": "hotkey",
+        "action": "f11",
+        "color": "orange"
+      },
+      {
+        "id": "gm_7",
+        "label": "Speedrun Timer",
+        "sublabel": "LiveSplit Hotkey",
+        "icon": "⏱️",
+        "type": "hotkey",
+        "action": "num1",
+        "color": "purple"
+      },
+      {
+        "id": "gm_8",
+        "label": "Mute Music",
+        "sublabel": "Pause Spotify",
+        "icon": "⏹️",
+        "type": "hotkey",
+        "action": "playpause",
+        "color": "default"
+      },
+      {
+        "id": "gm_9",
+        "label": "Gaming Wiki",
+        "sublabel": "Fandom Wiki",
+        "icon": "🌐",
+        "type": "hyperlink",
+        "action": "https://fandom.com",
+        "color": "blue"
+      }
+    ]
+  }
+}
