@@ -7,7 +7,10 @@ Aplikasi Macro Deck khusus layar sentuh 7 inci (resolusi 1024x600) berbasis Pyth
 ---
 
 ## ⚡ Fitur Utama
-1. **Resolusi Terkunci 1024x600 (Touch Optimized):** Sesuai standar monitor LCD HDMI 7 inci (Raspberry Pi/PC secondary display). Mode frameless dan fullscreen (`F11`).
+1. **Dua Mode Eksekusi:**
+   - 🌐 **Mode Web App Lokal (SANGAT DIREKOMENDASIKAN UNTUK LAPTOP KANTOR):** Berjalan di `http://localhost:5000` via Chrome/Edge App Mode 1024x600. **100% Bebas Blokir Microsoft Defender SmartScreen**, tanpa perlu compile .exe, tanpa hak admin!
+   - 💻 **Mode Desktop Standalone (PyQt6 .exe):** Aplikasi native frameless dengan build kit PyInstaller.
+2. **Resolusi Terkunci 1024x600 (Touch Optimized):** Sesuai standar monitor LCD HDMI 7 inci (Raspberry Pi/PC secondary display). Mode frameless dan fullscreen (`F11`).
 2. **Header Informatif:** 
    - Status `🟢 Connected`
    - Jam digital real-time

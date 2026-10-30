@@ -105,7 +105,7 @@ const COLOR_CLASSES: Record<string, { bg: string; border: string; text: string; 
 };
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<'simulator' | 'builder' | 'github' | 'code' | 'guide'>('simulator');
+  const [activeTab, setActiveTab] = useState<'simulator' | 'builder' | 'webapp' | 'github' | 'code' | 'guide'>('simulator');
 
   // Deck Customization State
   const [sidebarItems, setSidebarItems] = useState<SidebarItem[]>(DEFAULT_SIDEBAR);
@@ -346,9 +346,15 @@ export default function App() {
     try {
       const zip = new JSZip();
 
-      // Fetch or inject files
+      // Fetch files
       const mainPyRes = await fetch('/main.py').catch(() => null);
       const mainPyContent = mainPyRes && mainPyRes.ok ? await mainPyRes.text() : "";
+
+      const webServerRes = await fetch('/web_server.py').catch(() => null);
+      const webServerContent = webServerRes && webServerRes.ok ? await webServerRes.text() : "";
+
+      const webClientRes = await fetch('/web_client/index.html').catch(() => null);
+      const webClientContent = webClientRes && webClientRes.ok ? await webClientRes.text() : "";
 
       const reqRes = await fetch('/requirements.txt').catch(() => null);
       const reqContent = reqRes && reqRes.ok ? await reqRes.text() : "";
@@ -356,13 +362,19 @@ export default function App() {
       const batRes = await fetch('/build_exe.bat').catch(() => null);
       const batContent = batRes && batRes.ok ? await batRes.text() : "";
 
+      const startWebBatRes = await fetch('/start_web_deck.bat').catch(() => null);
+      const startWebBatContent = startWebBatRes && startWebBatRes.ok ? await startWebBatRes.text() : "";
+
       const readmeRes = await fetch('/README.md').catch(() => null);
       const readmeContent = readmeRes && readmeRes.ok ? await readmeRes.text() : "";
 
       zip.file('main.py', mainPyContent);
+      zip.file('web_server.py', webServerContent);
+      zip.file('web_client/index.html', webClientContent);
       zip.file('deck_config.json', exportDeckConfigJson());
       zip.file('requirements.txt', reqContent);
       zip.file('build_exe.bat', batContent);
+      zip.file('start_web_deck.bat', startWebBatContent);
       zip.file('README.md', readmeContent);
 
       const workflowFolder = zip.folder('.github')?.folder('workflows');
@@ -430,6 +442,16 @@ export default function App() {
           >
             <Sliders className="w-3.5 h-3.5" />
             <span>Button &amp; Sidebar Studio</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('webapp')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-medium transition-all ${
+              activeTab === 'webapp' ? 'bg-amber-600 text-white shadow-sm' : 'text-amber-400 hover:text-white'
+            }`}
+          >
+            <Tv className="w-3.5 h-3.5" />
+            <span>Mode Web App (Anti-Defender)</span>
           </button>
 
           <button
@@ -921,6 +943,123 @@ export default function App() {
                     </div>
                   </div>
                 ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ========================================================================= */}
+        {/* TAB: MODE WEB APP LOKAL (ANTI-DEFENDER SMART SCREEN) */}
+        {/* ========================================================================= */}
+        {activeTab === 'webapp' && (
+          <div className="w-full max-w-4xl mx-auto flex flex-col gap-5 text-slate-200">
+            {/* Header Banner */}
+            <div className="bg-gradient-to-r from-amber-950/80 via-slate-900 to-orange-950/70 border border-amber-500/40 p-5 rounded-2xl shadow-xl flex items-center justify-between gap-4">
+              <div className="flex items-center gap-3.5">
+                <div className="p-3 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-400">
+                  <Tv className="w-7 h-7" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <h2 className="text-lg font-bold text-white">Mode Web App Lokal (100% Anti-Defender)</h2>
+                    <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                      Rekomendasi Laptop Kantor
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-300 mt-1">
+                    Solusi terbaik untuk laptop kantor yang memblokir file .exe. Berjalan di <code>http://localhost:5000</code> dan dibuka via Chrome / Edge dalam mode aplikasi frameless 1024x600!
+                  </p>
+                </div>
+              </div>
+
+              <button
+                onClick={downloadFullZip}
+                className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold shadow-lg transition-all"
+              >
+                <Download className="w-4 h-4" />
+                <span>Download Bundle Web App</span>
+              </button>
+            </div>
+
+            {/* Kenapa Web App Lebih Unggul di Laptop Kantor */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <div className="bg-[#0f131e] border border-slate-800 p-4 rounded-xl flex flex-col gap-2">
+                <div className="flex items-center gap-2 text-emerald-400 font-bold text-xs">
+                  <Shield className="w-4 h-4" />
+                  <span>Nol Peringatan SmartScreen</span>
+                </div>
+                <p className="text-[11px] text-slate-400 leading-relaxed">
+                  Browser tidak pernah memblokir URL lokal. Tidak butuh sertifikat digital komersial yang mahal.
+                </p>
+              </div>
+
+              <div className="bg-[#0f131e] border border-slate-800 p-4 rounded-xl flex flex-col gap-2">
+                <div className="flex items-center gap-2 text-sky-400 font-bold text-xs">
+                  <Sliders className="w-4 h-4" />
+                  <span>Kiosk / App Mode Frameless</span>
+                </div>
+                <p className="text-[11px] text-slate-400 leading-relaxed">
+                  Otomatis dibuka tanpa address bar browser, ukuran tepat 1024x600 pas di layar 7 inci. Tekan F11 untuk fullscreen penuh.
+                </p>
+              </div>
+
+              <div className="bg-[#0f131e] border border-slate-800 p-4 rounded-xl flex flex-col gap-2">
+                <div className="flex items-center gap-2 text-amber-400 font-bold text-xs">
+                  <Radio className="w-4 h-4" />
+                  <span>Tetap Kontrol PC Nyata</span>
+                </div>
+                <p className="text-[11px] text-slate-400 leading-relaxed">
+                  Tombol di web app terhubung ke server lokal (web_server.py) untuk memicu Hotkey, membuka OBS, Discord, dan mengatur volume audio!
+                </p>
+              </div>
+            </div>
+
+            {/* Langkah Penggunaan 1-Klik */}
+            <div className="bg-[#0f131e] border border-slate-800 p-5 rounded-xl flex flex-col gap-4">
+              <h3 className="text-sm font-bold text-white flex items-center gap-2">
+                <PlayCircle className="w-4 h-4 text-amber-400" />
+                <span>Cara Menjalankan Versi Web App di Laptop Kantor Anda (3 Detik)</span>
+              </h3>
+
+              <div className="space-y-3 text-xs leading-relaxed">
+                <div className="flex items-start gap-3 bg-slate-900/70 p-3 rounded-lg border border-slate-800">
+                  <span className="w-5 h-5 rounded-full bg-amber-500 text-black font-bold text-xs flex items-center justify-center shrink-0">1</span>
+                  <div>
+                    <strong className="text-white block">Jalankan file: start_web_deck.bat</strong>
+                    <span className="text-slate-400">
+                      Cukup klik ganda file <code>start_web_deck.bat</code> di folder repositori Anda.
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3 bg-slate-900/70 p-3 rounded-lg border border-slate-800">
+                  <span className="w-5 h-5 rounded-full bg-amber-500 text-black font-bold text-xs flex items-center justify-center shrink-0">2</span>
+                  <div>
+                    <strong className="text-white block">Jendela Konsol 1024x600 Terbuka Otomatis</strong>
+                    <span className="text-slate-400">
+                      Skrip akan otomatis membuka Microsoft Edge atau Google Chrome dalam App Mode (tanpa bar URL, tanpa tab) pada ukuran 1024×600.
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3 bg-slate-900/70 p-3 rounded-lg border border-slate-800">
+                  <span className="w-5 h-5 rounded-full bg-amber-500 text-black font-bold text-xs flex items-center justify-center shrink-0">3</span>
+                  <div>
+                    <strong className="text-white block">Pindahkan ke Monitor 7 Inci &amp; Tekan F11</strong>
+                    <span className="text-slate-400">
+                      Tarik jendela tersebut ke monitor sentuh 7 inci Anda, lalu tekan tombol <strong>F11</strong> untuk fullscreen penuh tanpa border. Konsol siap dipakai!
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Terminal command manual */}
+              <div className="pt-2 border-t border-slate-800 flex flex-col gap-1.5">
+                <span className="text-slate-400 text-[11px]">Atau jalankan manual via Command Prompt:</span>
+                <div className="bg-black/70 p-2.5 rounded font-mono text-xs text-amber-300 flex items-center justify-between">
+                  <code>python web_server.py</code>
+                </div>
+                <span className="text-[10px] text-slate-500">Lalu buka <code>http://localhost:5000</code> di browser Anda.</span>
               </div>
             </div>
           </div>
