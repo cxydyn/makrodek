@@ -25,10 +25,11 @@ jobs:
         pip install -r requirements.txt
         pip install pyinstaller pycaw comtypes keyboard
 
-    - name: Build Standalone Windows EXE with PyInstaller
+    - name: Build Standalone Windows EXE with Metadata
       run: |
         pyinstaller --noconfirm --onefile --windowed `
           --name "MacroDeck7Inch_Portable" `
+          --version-file "version_info.txt" `
           --add-data "deck_config.json;." `
           --add-data "config.ini;." `
           --hidden-import "PyQt6.QtWebEngineWidgets" `
@@ -38,11 +39,28 @@ jobs:
           --hidden-import "keyboard" `
           main.py
 
-    - name: Upload Artifact Portable EXE
+    - name: Build Uncompressed Folder Version (Best for Corporate/Office Laptops)
+      run: |
+        pyinstaller --noconfirm --onedir --windowed `
+          --name "MacroDeck7Inch_App" `
+          --version-file "version_info.txt" `
+          --add-data "deck_config.json;." `
+          --add-data "config.ini;." `
+          --hidden-import "PyQt6.QtWebEngineWidgets" `
+          --hidden-import "PyQt6.QtWebEngineCore" `
+          --hidden-import "psutil" `
+          --hidden-import "requests" `
+          --hidden-import "keyboard" `
+          main.py
+        Compress-Archive -Path "dist/MacroDeck7Inch_App/*" -DestinationPath "dist/MacroDeck7Inch_Corporate_Folder.zip"
+
+    - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: MacroDeck7Inch-Windows-EXE
+        name: MacroDeck7Inch-Windows-Builds
         path: |
           dist/MacroDeck7Inch_Portable.exe
+          dist/MacroDeck7Inch_Corporate_Folder.zip
           deck_config.json
           config.ini
+          run_standalone.bat
